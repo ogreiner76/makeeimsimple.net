@@ -535,27 +535,33 @@
     <h2><span class="num">5</span>TCO-Rechner · interaktiv</h2>
     <p class="lede">Damit die Einsparung in <strong>Euro</strong> gerechnet werden kann, brauchen wir Ihre Hausnummer pro GB. Wählen Sie unten ein passendes Profil oder ziehen Sie die Slider auf Ihre eigenen Werte. Die Ergebnisse aktualisieren sich live.</p>
     <div class="tco-interactive">
-      <h3>TCO-Modell live · sprungfix</h3>
-      <p class="tagline-tco">Cloud-HANA wird in Stufen verkauft. Reduktion bringt nur dann Geld, wenn sie eine niedrigere Stufe ermöglicht. <strong style="color:#EA7800">Werte basieren auf realen RISE-Cloud-Listpreisen für produktive HANA-Systeme (mit Replikation, 99.9 SLA).</strong></p>
+      <h3>TCO-Rechner · live</h3>
+      <p class="tagline-tco">Jedes GB im produktiven HANA-System kostet Geld. Wählen Sie eine Prod-Größenklasse oder setzen Sie Ihren eigenen GB-Preis. <strong style="color:#EA7800">Werte basieren auf realen RISE-Cloud-Listpreisen produktiver HANA-Systeme.</strong></p>
 
-      <p class="tagline-tco">Schritt 1 · DB-Größe wählen oder Beispiel laden.</p>
+      <p class="tagline-tco">Schritt 1 · Preisbasis wählen.</p>
       <div class="profile-buttons">
-        <button data-example="demo_s" class="active">Klein · 636 GB</button>
-        <button data-example="demo_m">Mittel · 3.189 GB</button>
-        <button data-example="demo_l">Groß · 9.076 GB</button>
+        <button data-profile="prod6">Prod ≈ 6 TB · 176 €/GB</button>
+        <button data-profile="prod8" class="active">Prod ≈ 8 TB · 166 €/GB</button>
+        <button data-profile="prod10">Prod ≥ 10 TB · 158 €/GB</button>
       </div>
       <div class="sliders">
         <div class="slider-block">
-          <label>Aktuelle DB-Größe · GB</label>
-          <input id="val-dbsize" class="val-display" type="number" min="0" max="20000" step="100" />
-          <input id="sld-dbsize" type="range" min="0" max="16000" step="100" />
-          <div class="range-meta"><span>0 GB</span><span>16 TB</span></div>
+          <label>HANA · €/GB pro Jahr</label>
+          <input id="val-hana" class="val-display" type="number" min="0" max="400" step="1" />
+          <input id="sld-hana" type="range" min="100" max="250" step="1" />
+          <div class="range-meta"><span>100 €</span><span>250 €</span></div>
         </div>
         <div class="slider-block">
           <label>Discount · % (Annahme 10)</label>
           <input id="val-discount" class="val-display" type="number" min="0" max="50" step="1" />
           <input id="sld-discount" type="range" min="0" max="25" step="1" />
           <div class="range-meta"><span>0 %</span><span>25 %</span></div>
+        </div>
+        <div class="slider-block">
+          <label>Aktuelle DB-Größe · GB (für Stufen-Check)</label>
+          <input id="val-dbsize" class="val-display" type="number" min="0" max="20000" step="100" />
+          <input id="sld-dbsize" type="range" min="0" max="16000" step="100" />
+          <div class="range-meta"><span>0 GB</span><span>16 TB</span></div>
         </div>
       </div>
 
@@ -567,23 +573,23 @@
         <label><input type="checkbox" id="cb-fiveyear" /> 5-Jahres-Sicht statt Jahreswert</label>
       </div>
 
-      <div class="stair-viz">
-        <div class="stair-line"><span class="lab">Aktuelle Stufe</span><span class="val amber" id="r-stage-now">≤ 4 TB · 60.000 €/Monat</span></div>
-        <div class="stair-line"><span class="lab">Reduktion</span><span class="val" id="r-reduction">156 GB</span></div>
-        <div class="stair-line"><span class="lab">Neue DB-Größe</span><span class="val" id="r-newdb">480 GB</span></div>
-        <div class="stair-line"><span class="lab">Neue Stufe</span><span class="val green" id="r-stage-new">≤ 4 TB · 60.000 €/Monat</span></div>
-        <div class="stair-bars" id="stair-bars"></div>
-        <div class="stair-help" id="stair-help">Aktuelle Stufe wird durch die Reduktion nicht verlassen. Sprungfix-Einsparung: 0 €. Nutzen liegt in der Wachstumsverzögerung.</div>
-      </div>
-
       <div class="tco-results">
         <div class="item"><div class="num" id="r-gb">156 GB</div><div class="lab">Reduktion DB</div></div>
-        <div class="item"><div class="num" id="r-jump">kein Sprung</div><div class="lab">Stufenwechsel</div></div>
-        <div class="item"><div class="num" id="r-monthly">0 €</div><div class="lab">Einsparung pro Monat</div></div>
-        <div class="item"><div class="num" id="r-total">0 € / Jahr</div><div class="lab">Gesamt nach Discount</div></div>
+        <div class="item"><div class="num" id="r-gross">25.896 €</div><div class="lab">Einsparung brutto / Jahr</div></div>
+        <div class="item"><div class="num" id="r-discount">- 2.590 €</div><div class="lab">Discount-Abzug</div></div>
+        <div class="item"><div class="num" id="r-total">23.306 € / Jahr</div><div class="lab">TCO-Einsparung netto</div></div>
       </div>
 
-      <p class="tco-note">Berechnung sprungfix: (Stufe_alt − Stufe_neu) × 12 Monate × (1 − Discount) × Jahre. Storage und Backup sind im HANA-Preis enthalten. Stufen 4/6/8 TB basieren auf entplexit-Listpreisen 2026-05-13, Stufen ≤4, 10, 12, 16 TB sind interpoliert. Bei kleinen Systemen kann ein Reduktions-Effort daher 0 € direkter Einsparung ergeben - der Wert liegt dann in der Wachstumsverzögerung.</p>
+      <p class="tco-note">Berechnung: Reduktion in GB × HANA-Preis pro GB × Jahre × (1 - Discount). Storage Tier 1 und Backup sind beim RISE-Modell im HANA-Preis enthalten.</p>
+
+      <div class="stair-viz">
+        <div class="stair-line"><span class="lab">Cloud-Stufen-Bonus</span><span class="val amber" id="r-jump-headline">wird geprüft</span></div>
+        <div class="stair-line"><span class="lab">Aktuelle Stufe</span><span class="val" id="r-stage-now">≤ 4 TB · 60.000 €/Monat</span></div>
+        <div class="stair-line"><span class="lab">Neue DB-Größe nach Reduktion</span><span class="val" id="r-newdb">480 GB</span></div>
+        <div class="stair-line"><span class="lab">Neue Stufe</span><span class="val green" id="r-stage-new">≤ 4 TB · 60.000 €/Monat</span></div>
+        <div class="stair-bars" id="stair-bars"></div>
+        <div class="stair-help" id="stair-help">Cloud-HANA wird in festen Stufen verkauft. Wenn die Reduktion einen Stufensprung ermöglicht, kommt die Stufendifferenz zusätzlich obendrauf. Andernfalls liegt der Nutzen in der oben gezeigten TCO-Einsparung plus der Verzögerung des nächsten Stufensprungs.</div>
+      </div>
     </div>
   </section>
 
@@ -654,43 +660,44 @@
 </footer>
 
 <script>
-  // Stufen-Tabelle für Prod-HANA (mit Replikation, 99.9 SLA)
-  // Quelle: entplexit Listpreise 2026-05-13, Stufen ≤4/10/12/16 TB interpoliert
+  // ===== Preis-Profile (lineare TCO-Betrachtung) =====
+  const PROFILES = {
+    prod6:  { hana: 176, label: 'Prod 6 TB' },
+    prod8:  { hana: 166, label: 'Prod 8 TB' },
+    prod10: { hana: 158, label: 'Prod 10 TB' }
+  };
+  // ===== Stufen-Tabelle (fuer den Bonus-Check) =====
   const STAGES = [
-    { max_gb:  4096, eur_month:  60000, label: '≤ 4 TB',   estimated: true  },
-    { max_gb:  6144, eur_month:  90000, label: '≤ 6 TB',   estimated: false },
-    { max_gb:  8192, eur_month: 113000, label: '≤ 8 TB',   estimated: false },
-    { max_gb: 10240, eur_month: 135000, label: '≤ 10 TB',  estimated: true  },
-    { max_gb: 12288, eur_month: 155000, label: '≤ 12 TB',  estimated: true  },
-    { max_gb: 16384, eur_month: 200000, label: '≤ 16 TB',  estimated: true  }
+    { max_gb:  4096, eur_month:  60000, label: '\u2264 4 TB',  estimated: true  },
+    { max_gb:  6144, eur_month:  90000, label: '\u2264 6 TB',  estimated: false },
+    { max_gb:  8192, eur_month: 113000, label: '\u2264 8 TB',  estimated: false },
+    { max_gb: 10240, eur_month: 135000, label: '\u2264 10 TB', estimated: true  },
+    { max_gb: 12288, eur_month: 155000, label: '\u2264 12 TB', estimated: true  },
+    { max_gb: 16384, eur_month: 200000, label: '\u2264 16 TB', estimated: true  }
   ];
   const PHASE_GB = { phase1: 35, phase2: 121, phase3: 292 };
-  const EXAMPLES = {
-    demo_s: { dbsize:  636, label: 'Klein · 636 GB' },
-    demo_m: { dbsize: 3189, label: 'Mittel · 3.189 GB' },
-    demo_l: { dbsize: 9076, label: 'Groß · 9.076 GB' }
-  };
   const $ = (id) => document.getElementById(id);
-  const slDb = $('sld-dbsize'), vDb = $('val-dbsize');
+  const slHana = $('sld-hana'), vHana = $('val-hana');
   const slDisc = $('sld-discount'), vDisc = $('val-discount');
+  const slDb = $('sld-dbsize'), vDb = $('val-dbsize');
   const cb1 = $('cb-phase1'), cb2 = $('cb-phase2'), cb3 = $('cb-phase3'), cb5y = $('cb-fiveyear');
-  const rGB = $('r-gb'), rJump = $('r-jump'), rMonthly = $('r-monthly'), rTotal = $('r-total');
-  const rStageNow = $('r-stage-now'), rStageNew = $('r-stage-new');
-  const rReduction = $('r-reduction'), rNewDb = $('r-newdb');
+  const rGB = $('r-gb'), rGross = $('r-gross'), rDiscount = $('r-discount'), rTotal = $('r-total');
+  const rJumpHeadline = $('r-jump-headline'), rStageNow = $('r-stage-now');
+  const rNewDb = $('r-newdb'), rStageNew = $('r-stage-new');
   const stairBars = $('stair-bars'), stairHelp = $('stair-help');
-  function fmtEuro(n) { return n.toLocaleString('de-DE', { maximumFractionDigits: 0 }) + ' €'; }
+  function fmtEuro(n) { return Math.round(n).toLocaleString('de-DE') + ' \u20ac'; }
   function fmtGB(n) {
     if (n >= 1024) return (n/1024).toLocaleString('de-DE', { maximumFractionDigits: 2 }) + ' TB';
-    return n.toLocaleString('de-DE', { maximumFractionDigits: 0 }) + ' GB';
+    return Math.round(n).toLocaleString('de-DE') + ' GB';
   }
   function findStage(gb) {
     for (const s of STAGES) if (gb <= s.max_gb) return s;
     return STAGES[STAGES.length - 1];
   }
-  function applyExample(key) {
-    const e = EXAMPLES[key];
-    slDb.value = vDb.value = e.dbsize;
-    document.querySelectorAll('.profile-buttons button').forEach(b => b.classList.toggle('active', b.dataset.example === key));
+  function applyProfile(key) {
+    const p = PROFILES[key];
+    slHana.value = vHana.value = p.hana;
+    document.querySelectorAll('.profile-buttons button').forEach(b => b.classList.toggle('active', b.dataset.profile === key));
     recompute();
   }
   function buildBars(currentStage, newStage) {
@@ -698,52 +705,49 @@
     STAGES.forEach((s, i) => {
       const bar = document.createElement('div');
       bar.className = 'stair-bar';
-      const heightFactor = (i + 1) / STAGES.length;
-      bar.style.height = (40 + heightFactor * 60) + '%';
-      if (s === currentStage && s === newStage) {
-        bar.classList.add('current');
-      } else if (s === currentStage) {
-        bar.classList.add('current');
-      } else if (s === newStage) {
-        bar.classList.add('target');
-      }
+      bar.style.height = (40 + ((i + 1) / STAGES.length) * 60) + '%';
+      if (s === currentStage) bar.classList.add('current');
+      else if (s === newStage) bar.classList.add('target');
       const lbl = document.createElement('div');
       lbl.className = 'bar-label';
-      lbl.textContent = s.label.replace('≤ ','');
+      lbl.textContent = s.label.replace('\u2264 ', '');
       bar.appendChild(lbl);
       stairBars.appendChild(bar);
     });
   }
   function recompute() {
+    let gb = 0;
+    if (cb1.checked) gb += PHASE_GB.phase1;
+    if (cb2.checked) gb += PHASE_GB.phase2;
+    if (cb3.checked) gb += PHASE_GB.phase3;
+    const years = cb5y.checked ? 5 : 1;
+    const hanaRate = Number(vHana.value || 0);
+    const discountPct = Number(vDisc.value || 0);
+    const gross = gb * hanaRate * years;
+    const discountAmount = gross * (discountPct / 100);
+    const net = gross - discountAmount;
+    rGB.textContent = fmtGB(gb);
+    rGross.textContent = fmtEuro(gross) + (cb5y.checked ? ' (5 J.)' : ' / Jahr');
+    rDiscount.textContent = '- ' + fmtEuro(discountAmount);
+    rTotal.textContent = fmtEuro(net) + (cb5y.checked ? ' (5 J.)' : ' / Jahr');
     const dbsize = Number(vDb.value || 0);
-    let reduction = 0;
-    if (cb1.checked) reduction += PHASE_GB.phase1;
-    if (cb2.checked) reduction += PHASE_GB.phase2;
-    if (cb3.checked) reduction += PHASE_GB.phase3;
-    const newDb = Math.max(0, dbsize - reduction);
+    const newDb = Math.max(0, dbsize - gb);
     const stageNow = findStage(dbsize);
     const stageNew = findStage(newDb);
-    const years = cb5y.checked ? 5 : 1;
-    const discountFactor = 1 - (Number(vDisc.value || 0) / 100);
-    const monthlyDiff = stageNow.eur_month - stageNew.eur_month;
-    const annual = monthlyDiff * 12 * discountFactor;
-    const total = annual * years;
-    // Display
-    rGB.textContent = fmtGB(reduction);
-    rReduction.textContent = fmtGB(reduction);
+    rStageNow.textContent = stageNow.label + ' \u00b7 ' + fmtEuro(stageNow.eur_month) + '/Monat' + (stageNow.estimated ? ' (gesch.)' : '');
+    rStageNew.textContent = stageNew.label + ' \u00b7 ' + fmtEuro(stageNew.eur_month) + '/Monat' + (stageNew.estimated ? ' (gesch.)' : '');
     rNewDb.textContent = fmtGB(newDb);
-    rStageNow.textContent = stageNow.label + ' · ' + fmtEuro(stageNow.eur_month) + '/Monat' + (stageNow.estimated ? ' (gesch.)' : '');
-    rStageNew.textContent = stageNew.label + ' · ' + fmtEuro(stageNew.eur_month) + '/Monat' + (stageNew.estimated ? ' (gesch.)' : '');
     if (stageNow === stageNew) {
-      rJump.textContent = 'kein Sprung';
-      rMonthly.textContent = '0 €';
-      rTotal.textContent = '0 € / Jahr';
-      stairHelp.textContent = 'Aktuelle Stufe wird durch die Reduktion nicht verlassen. Sprungfix-Einsparung: 0 €. Nutzen liegt in der Wachstumsverzögerung (geschätzt ' + Math.round(reduction / 6.75) + ' Monate weniger Wachstum bei 6,75 GB/Monat).';
+      const monthsDelay = gb > 0 ? Math.round(gb / 6.75) : 0;
+      rJumpHeadline.textContent = 'kein Stufensprung';
+      rJumpHeadline.className = 'val';
+      stairHelp.textContent = 'Die Reduktion verlaesst die aktuelle Cloud-Stufe nicht. Der Nutzen liegt in der oben gezeigten TCO-Einsparung sowie in der Verzoegerung des naechsten Stufensprungs (geschaetzt ' + monthsDelay + ' Monate weniger Wachstum bei 6,75 GB/Monat).';
     } else {
-      rJump.textContent = stageNow.label + ' → ' + stageNew.label;
-      rMonthly.textContent = fmtEuro(monthlyDiff * discountFactor);
-      rTotal.textContent = fmtEuro(total) + (cb5y.checked ? ' (5 J.)' : ' / Jahr');
-      stairHelp.textContent = 'Stufensprung erreicht: ' + stageNow.label + ' → ' + stageNew.label + '. Direkte Einsparung: ' + fmtEuro(monthlyDiff) + '/Monat brutto, ' + fmtEuro(monthlyDiff * discountFactor) + '/Monat nach ' + Number(vDisc.value || 0) + '% Discount.';
+      const monthlyDiff = stageNow.eur_month - stageNew.eur_month;
+      const annualBonus = monthlyDiff * 12 * (1 - discountPct / 100);
+      rJumpHeadline.textContent = '+ ' + fmtEuro(annualBonus * years) + (cb5y.checked ? ' (5 J.)' : ' / Jahr');
+      rJumpHeadline.className = 'val green';
+      stairHelp.textContent = 'Stufensprung erreicht: ' + stageNow.label + ' \u2192 ' + stageNew.label + '. Zusaetzlich zur TCO-Einsparung kommt die Stufendifferenz von ' + fmtEuro(monthlyDiff) + '/Monat brutto, also ' + fmtEuro(annualBonus) + '/Jahr nach ' + discountPct + ' % Discount obendrauf.';
     }
     buildBars(stageNow, stageNew);
   }
@@ -751,14 +755,14 @@
     slider.addEventListener('input', () => { number.value = slider.value; recompute(); });
     number.addEventListener('input', () => { slider.value = number.value; recompute(); });
   }
-  syncPair(slDb, vDb); syncPair(slDisc, vDisc);
+  syncPair(slHana, vHana); syncPair(slDisc, vDisc); syncPair(slDb, vDb);
   document.querySelectorAll('.profile-buttons button').forEach(b => {
-    b.addEventListener('click', () => applyExample(b.dataset.example));
+    b.addEventListener('click', () => applyProfile(b.dataset.profile));
   });
   [cb1, cb2, cb3, cb5y].forEach(cb => cb.addEventListener('change', recompute));
-  // Initial: Klein-Demo, Discount 10
   vDisc.value = slDisc.value = 10;
-  applyExample('demo_s');
+  vDb.value = slDb.value = 636;
+  applyProfile('prod8');
 </script>
 
 </body>
