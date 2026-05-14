@@ -582,9 +582,9 @@
 
       <p class="tagline-tco">Schritt 1 · Preisbasis wählen.</p>
       <div class="profile-buttons">
-        <button data-profile="prod6">Prod ≈ 6 TB · 176 €/GB</button>
-        <button data-profile="prod8" class="active">Prod ≈ 8 TB · 166 €/GB</button>
-        <button data-profile="prod10">Prod ≥ 10 TB · 158 €/GB</button>
+        <button data-profile="prod4">Prod ≈ 4 TB · 161 €/GB</button>
+        <button data-profile="prod6" class="active">Prod ≈ 6 TB · 176 €/GB</button>
+        <button data-profile="prod8">Prod ≈ 8 TB · 166 €/GB</button>
       </div>
       <div class="sliders">
         <div class="slider-block">
@@ -617,18 +617,18 @@
 
       <div class="tco-results">
         <div class="item"><div class="num" id="r-gb">156 GB</div><div class="lab">Reduktion DB</div></div>
-        <div class="item"><div class="num" id="r-gross">25.896 €</div><div class="lab">Einsparung brutto / Jahr</div></div>
-        <div class="item"><div class="num" id="r-discount">- 2.590 €</div><div class="lab">Discount-Abzug</div></div>
-        <div class="item"><div class="num" id="r-total">23.306 € / Jahr</div><div class="lab">TCO-Einsparung netto</div></div>
+        <div class="item"><div class="num" id="r-gross">27.456 €</div><div class="lab">Einsparung brutto / Jahr</div></div>
+        <div class="item"><div class="num" id="r-discount">- 2.746 €</div><div class="lab">Discount-Abzug</div></div>
+        <div class="item"><div class="num" id="r-total">24.710 € / Jahr</div><div class="lab">TCO-Einsparung netto</div></div>
       </div>
 
       <p class="tco-note">Berechnung: Reduktion in GB × HANA-Preis pro GB × Jahre × (1 - Discount). Storage Tier 1 und Backup sind beim RISE-Modell im HANA-Preis enthalten.</p>
 
       <div class="cloud-check">
         <div class="cc-header">Cloud-Stufen-Check</div>
-        <div class="cc-row"><span class="cc-lab">Aktuelle Stufe</span><span class="cc-val" id="r-stage-now">≤ 4 TB · 60.000 €/Monat</span></div>
+        <div class="cc-row"><span class="cc-lab">Aktuelle Stufe</span><span class="cc-val" id="r-stage-now">≤ 4 TB · 55.000 €/Monat</span></div>
         <div class="cc-row"><span class="cc-lab">DB-Größe nach Reduktion</span><span class="cc-val" id="r-newdb">480 GB</span></div>
-        <div class="cc-row"><span class="cc-lab">Neue Stufe</span><span class="cc-val green" id="r-stage-new">≤ 4 TB · 60.000 €/Monat</span></div>
+        <div class="cc-row"><span class="cc-lab">Neue Stufe</span><span class="cc-val green" id="r-stage-new">≤ 4 TB · 55.000 €/Monat</span></div>
         <div class="cc-row cc-bonus"><span class="cc-lab">Stufensprung-Bonus</span><span class="cc-val amber" id="r-jump-headline">wird geprüft</span></div>
         <div class="cc-help" id="stair-help">Cloud-HANA wird in festen Stufen verkauft. Wenn die Reduktion einen Stufensprung ermöglicht, kommt die Stufendifferenz zusätzlich obendrauf. Andernfalls liegt der Nutzen in der oben gezeigten TCO-Einsparung plus der Verzögerung des nächsten Stufensprungs.</div>
       </div>
@@ -703,14 +703,18 @@
 
 <script>
   // ===== Preis-Profile (lineare TCO-Betrachtung) =====
+  // Abgeleitet aus den von entplexit gelieferten RISE-Cloud-Listpreisen:
+  //   4 TB:  55.000 EUR/Monat / 4.096 GB * 12 = 161,13 EUR/GB/Jahr
+  //   6 TB:  90.000 EUR/Monat / 6.144 GB * 12 = 175,78 EUR/GB/Jahr
+  //   8 TB: 113.000 EUR/Monat / 8.192 GB * 12 = 165,53 EUR/GB/Jahr
   const PROFILES = {
+    prod4:  { hana: 161, label: 'Prod 4 TB' },
     prod6:  { hana: 176, label: 'Prod 6 TB' },
-    prod8:  { hana: 166, label: 'Prod 8 TB' },
-    prod10: { hana: 158, label: 'Prod 10 TB' }
+    prod8:  { hana: 166, label: 'Prod 8 TB' }
   };
   // ===== Stufen-Tabelle (fuer den Bonus-Check) =====
   const STAGES = [
-    { max_gb:  4096, eur_month:  60000, label: '\u2264 4 TB',  estimated: true  },
+    { max_gb:  4096, eur_month:  55000, label: '\u2264 4 TB',  estimated: false },
     { max_gb:  6144, eur_month:  90000, label: '\u2264 6 TB',  estimated: false },
     { max_gb:  8192, eur_month: 113000, label: '\u2264 8 TB',  estimated: false },
     { max_gb: 10240, eur_month: 135000, label: '\u2264 10 TB', estimated: true  },
@@ -788,7 +792,7 @@
   [cb1, cb2, cb3, cb5y].forEach(cb => cb.addEventListener('change', recompute));
   vDisc.value = slDisc.value = 10;
   vDb.value = slDb.value = 636;
-  applyProfile('prod8');
+  applyProfile('prod6');
 </script>
 
 </body>
