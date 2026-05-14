@@ -35,11 +35,11 @@
     right: -220px; top: -220px;
     z-index: 1;
   }
-  /* entplexit-Logo zentriert im sichtbaren Viertelkreis, vertikal und horizontal mittig */
+  /* entplexit-Logo mittig im sichtbaren Viertelkreis */
   .hero .blob-logo {
     position: absolute;
-    width: 200px; height: auto;
-    right: 50px; top: 110px;
+    width: 240px; height: auto;
+    right: 15px; top: 50px;
     z-index: 2;
   }
   /* SAP-Partner-Badge dezent links vom Blob */
@@ -317,6 +317,48 @@
   .tco-results .item .lab { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: rgba(255,255,255,0.85); margin-top: 6px; }
   .tco-note { font-size: 12px; color: rgba(255,255,255,0.85); margin-top: 14px; line-height: 1.5; }
 
+  /* === Cloud-Stufen-Check Box === */
+  .cloud-check {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid #5C5856;
+    border-radius: 4px;
+    padding: 22px 24px;
+    margin-top: 20px;
+  }
+  .cloud-check .cc-header {
+    color: #EA7800;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 700;
+    margin-bottom: 14px;
+  }
+  .cloud-check .cc-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    padding: 10px 0;
+    border-bottom: 1px solid #5C5856;
+    font-size: 14px;
+  }
+  .cloud-check .cc-row:last-of-type { border-bottom: none; }
+  .cloud-check .cc-lab { color: #B8B5B3; }
+  .cloud-check .cc-val { color: #FFFFFF; font-weight: 700; font-variant-numeric: tabular-nums; text-align: right; }
+  .cloud-check .cc-val.amber { color: #EA7800; }
+  .cloud-check .cc-val.green { color: #6FCF7A; }
+  .cloud-check .cc-bonus { border-top: 2px solid #EA7800; margin-top: 6px; padding-top: 14px; }
+  .cloud-check .cc-bonus .cc-lab { color: #FFFFFF; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; font-size: 12px; }
+  .cloud-check .cc-bonus .cc-val { font-size: 18px; }
+  .cloud-check .cc-help {
+    color: #B8B5B3;
+    font-size: 12.5px;
+    line-height: 1.6;
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px dashed #5C5856;
+  }
+
   .service-bridge { background: white; padding: 28px 32px; border-radius: 4px; border: 1px solid #E6E6E6; }
   .service-bridge p.intro { font-size: 16px; margin: 0 0 18px; color: #474341; }
   .packages { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 18px; }
@@ -357,14 +399,14 @@
     .sliders, .tco-results, .phase-cards, .packages, .findings, .kpi-grid, .usp-box { grid-template-columns: 1fr 1fr; }
     .hero .hero-content { max-width: 100%; padding-top: 80px; }
     .hero .blob { width: 360px; height: 360px; right: -160px; top: -160px; }
-    .hero .blob-logo { width: 130px; right: 30px; top: 70px; }
+    .hero .blob-logo { width: 170px; right: 10px; top: 40px; }
     .hero .sap-floating { top: 18px; right: 220px; height: 28px; }
   }
   @media (max-width: 700px) {
     main, .hero, footer.foot { padding-left: 24px; padding-right: 24px; }
     .sliders, .tco-results, .phase-cards, .packages, .findings, .kpi-grid, .usp-box { grid-template-columns: 1fr; }
     .hero .blob { width: 240px; height: 240px; right: -120px; top: -120px; }
-    .hero .blob-logo { width: 90px; right: 16px; top: 40px; }
+    .hero .blob-logo { width: 115px; right: 6px; top: 24px; }
     .hero .sap-floating { display: none; }
   }
 </style>
@@ -582,13 +624,13 @@
 
       <p class="tco-note">Berechnung: Reduktion in GB × HANA-Preis pro GB × Jahre × (1 - Discount). Storage Tier 1 und Backup sind beim RISE-Modell im HANA-Preis enthalten.</p>
 
-      <div class="stair-viz">
-        <div class="stair-line"><span class="lab">Cloud-Stufen-Bonus</span><span class="val amber" id="r-jump-headline">wird geprüft</span></div>
-        <div class="stair-line"><span class="lab">Aktuelle Stufe</span><span class="val" id="r-stage-now">≤ 4 TB · 60.000 €/Monat</span></div>
-        <div class="stair-line"><span class="lab">Neue DB-Größe nach Reduktion</span><span class="val" id="r-newdb">480 GB</span></div>
-        <div class="stair-line"><span class="lab">Neue Stufe</span><span class="val green" id="r-stage-new">≤ 4 TB · 60.000 €/Monat</span></div>
-        <div class="stair-bars" id="stair-bars"></div>
-        <div class="stair-help" id="stair-help">Cloud-HANA wird in festen Stufen verkauft. Wenn die Reduktion einen Stufensprung ermöglicht, kommt die Stufendifferenz zusätzlich obendrauf. Andernfalls liegt der Nutzen in der oben gezeigten TCO-Einsparung plus der Verzögerung des nächsten Stufensprungs.</div>
+      <div class="cloud-check">
+        <div class="cc-header">Cloud-Stufen-Check</div>
+        <div class="cc-row"><span class="cc-lab">Aktuelle Stufe</span><span class="cc-val" id="r-stage-now">≤ 4 TB · 60.000 €/Monat</span></div>
+        <div class="cc-row"><span class="cc-lab">DB-Größe nach Reduktion</span><span class="cc-val" id="r-newdb">480 GB</span></div>
+        <div class="cc-row"><span class="cc-lab">Neue Stufe</span><span class="cc-val green" id="r-stage-new">≤ 4 TB · 60.000 €/Monat</span></div>
+        <div class="cc-row cc-bonus"><span class="cc-lab">Stufensprung-Bonus</span><span class="cc-val amber" id="r-jump-headline">wird geprüft</span></div>
+        <div class="cc-help" id="stair-help">Cloud-HANA wird in festen Stufen verkauft. Wenn die Reduktion einen Stufensprung ermöglicht, kommt die Stufendifferenz zusätzlich obendrauf. Andernfalls liegt der Nutzen in der oben gezeigten TCO-Einsparung plus der Verzögerung des nächsten Stufensprungs.</div>
       </div>
     </div>
   </section>
@@ -684,7 +726,7 @@
   const rGB = $('r-gb'), rGross = $('r-gross'), rDiscount = $('r-discount'), rTotal = $('r-total');
   const rJumpHeadline = $('r-jump-headline'), rStageNow = $('r-stage-now');
   const rNewDb = $('r-newdb'), rStageNew = $('r-stage-new');
-  const stairBars = $('stair-bars'), stairHelp = $('stair-help');
+  const stairHelp = $('stair-help');
   function fmtEuro(n) { return Math.round(n).toLocaleString('de-DE') + ' \u20ac'; }
   function fmtGB(n) {
     if (n >= 1024) return (n/1024).toLocaleString('de-DE', { maximumFractionDigits: 2 }) + ' TB';
@@ -699,21 +741,6 @@
     slHana.value = vHana.value = p.hana;
     document.querySelectorAll('.profile-buttons button').forEach(b => b.classList.toggle('active', b.dataset.profile === key));
     recompute();
-  }
-  function buildBars(currentStage, newStage) {
-    stairBars.innerHTML = '';
-    STAGES.forEach((s, i) => {
-      const bar = document.createElement('div');
-      bar.className = 'stair-bar';
-      bar.style.height = (40 + ((i + 1) / STAGES.length) * 60) + '%';
-      if (s === currentStage) bar.classList.add('current');
-      else if (s === newStage) bar.classList.add('target');
-      const lbl = document.createElement('div');
-      lbl.className = 'bar-label';
-      lbl.textContent = s.label.replace('\u2264 ', '');
-      bar.appendChild(lbl);
-      stairBars.appendChild(bar);
-    });
   }
   function recompute() {
     let gb = 0;
@@ -740,16 +767,15 @@
     if (stageNow === stageNew) {
       const monthsDelay = gb > 0 ? Math.round(gb / 6.75) : 0;
       rJumpHeadline.textContent = 'kein Stufensprung';
-      rJumpHeadline.className = 'val';
+      rJumpHeadline.className = 'cc-val';
       stairHelp.textContent = 'Die Reduktion verlaesst die aktuelle Cloud-Stufe nicht. Der Nutzen liegt in der oben gezeigten TCO-Einsparung sowie in der Verzoegerung des naechsten Stufensprungs (geschaetzt ' + monthsDelay + ' Monate weniger Wachstum bei 6,75 GB/Monat).';
     } else {
       const monthlyDiff = stageNow.eur_month - stageNew.eur_month;
       const annualBonus = monthlyDiff * 12 * (1 - discountPct / 100);
       rJumpHeadline.textContent = '+ ' + fmtEuro(annualBonus * years) + (cb5y.checked ? ' (5 J.)' : ' / Jahr');
-      rJumpHeadline.className = 'val green';
+      rJumpHeadline.className = 'cc-val green';
       stairHelp.textContent = 'Stufensprung erreicht: ' + stageNow.label + ' \u2192 ' + stageNew.label + '. Zusaetzlich zur TCO-Einsparung kommt die Stufendifferenz von ' + fmtEuro(monthlyDiff) + '/Monat brutto, also ' + fmtEuro(annualBonus) + '/Jahr nach ' + discountPct + ' % Discount obendrauf.';
     }
-    buildBars(stageNow, stageNew);
   }
   function syncPair(slider, number) {
     slider.addEventListener('input', () => { number.value = slider.value; recompute(); });
