@@ -220,6 +220,18 @@
     color: #474341;
     border-top: 2px solid #EA7800;
   }
+  table.tbl input.pt-input {
+    width: 58px;
+    text-align: right;
+    border: 1px solid #E6E6E6;
+    border-radius: 3px;
+    padding: 4px 6px;
+    font-family: inherit;
+    font-size: 14px;
+    color: #474341;
+    background: #FFF6EC;
+  }
+  table.tbl input.pt-input:focus { outline: 1px solid #EA7800; border-color: #EA7800; }
 
   .findings { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
   .finding {
@@ -316,28 +328,6 @@
   .tco-results .item .num { font-size: 28px; font-weight: 700; color: #EA7800; line-height: 1.1; }
   .tco-results .item .lab { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: rgba(255,255,255,0.85); margin-top: 6px; }
   .tco-note { font-size: 12px; color: rgba(255,255,255,0.85); margin-top: 14px; line-height: 1.5; }
-
-  /* === Amortisations-Box === */
-  .amort-box {
-    background: rgba(234,120,0,0.10);
-    border: 1px solid #EA7800;
-    border-radius: 4px;
-    padding: 22px 24px;
-    margin-top: 18px;
-  }
-  .amort-box .am-header { color: #EA7800; font-size: 13px; text-transform: uppercase; letter-spacing: 2px; font-weight: 700; margin-bottom: 16px; }
-  .amort-box .am-grid { display: flex; flex-wrap: wrap; gap: 24px; }
-  .amort-box .am-field { flex: 1; min-width: 130px; }
-  .amort-box .am-field label { display: block; color: #B8B5B3; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
-  .amort-box .am-field .am-val { font-size: 22px; font-weight: 700; color: #FFFFFF; }
-  .amort-box .am-field .am-val.amber { color: #EA7800; }
-  .amort-box .am-field input {
-    background: #5C5856; color: #FFFFFF; border: 1px solid #817F80;
-    padding: 9px 12px; border-radius: 4px; width: 100%;
-    font-family: inherit; font-size: 18px; font-weight: 700;
-  }
-  .amort-box .am-field input:focus { outline: 2px solid #EA7800; border-color: #EA7800; }
-  .amort-box .am-help { color: #B8B5B3; font-size: 12.5px; line-height: 1.6; margin-top: 16px; padding-top: 14px; border-top: 1px dashed #5C5856; }
 
   /* === Cloud-Stufen-Check Box === */
   .cloud-check {
@@ -484,7 +474,7 @@
   </section>
 
   <section class="block">
-    <h2><span class="num">2</span>Top 10 Tabellen Speicherverbraucher</h2>
+    <h2><span class="num">2</span>Top 10 Tabellen Speicherverbrauch Datenbank</h2>
     <p class="lede">Eine einzige Custom-Tabelle aus einem Drittanbieter-Add-On macht 44 % der gesamten Datenbank aus.</p>
     <div class="source-note"><b>Datenquelle</b>: EWA-Sektion "Largest Column Tables (Size)" · Kategorisierung und Empfehlungen ergänzt aus entplexit-Wissensbasis</div>
     <table class="tbl">
@@ -551,18 +541,18 @@
       <table class="tbl">
         <thead><tr><th>#</th><th>Bereich / Tabelle</th><th class="num">Ist-Volumen</th><th class="num">Geschätzte Einsparung</th><th class="num">Rate</th><th>Phase</th><th class="num">Aufwand (PT)</th><th>Einordnung</th></tr></thead>
         <tbody>
-          <tr><td>1</td><td>SOFFCONT1 (Dokumente)</td><td class="num">115,8 GB</td><td class="num">110,0 GB</td><td class="num">95 %</td><td><span class="phase-pill phase-1">Phase 1</span></td><td class="num">4</td><td>Einrichtung und Migration der Dokumente auf externes Archivsystem (z.B. OpenText, KGS, etc.) oder im Rahmen entplexit SAP Archive Managed Service.</td></tr>
-          <tr><td>2</td><td>REPOLOAD (Repository-Cache)</td><td class="num">40,5 GB</td><td class="num">28,4 GB</td><td class="num">70 %</td><td><span class="phase-pill phase-1">Phase 1</span></td><td class="num">1</td><td>Technischer Quick Win, SAP Note 2388483.</td></tr>
-          <tr><td>3</td><td>FAGLFLEXA (FI klassisch)</td><td class="num">5,1 GB</td><td class="num">4,8 GB</td><td class="num">95 %</td><td><span class="phase-pill phase-2">Phase 2</span></td><td class="num">2</td><td>In S/4HANA normalerweise leer, Migrationsrest prüfen.</td></tr>
-          <tr><td>4</td><td>SCMON_DATA (Code Coverage)</td><td class="num">≈ 5 GB</td><td class="num">≈ 4 GB</td><td class="num">80 %</td><td><span class="phase-pill phase-1">Phase 1</span></td><td class="num">2</td><td>Cleanup oder Trace deaktivieren.</td></tr>
-          <tr><td>5</td><td>CDPOS / CDHDR (Änderungsbelege)</td><td class="num">6,0 GB</td><td class="num">3,6 GB</td><td class="num">60 %</td><td><span class="phase-pill phase-2">Phase 2</span></td><td class="num">4</td><td>Fachbereichs-Freigabe für Aufbewahrungsfristen erforderlich.</td></tr>
-          <tr><td>6</td><td>ACDOCA (Universal Journal)</td><td class="num">9,5 GB</td><td class="num">2,9 GB</td><td class="num">30 %</td><td><span class="phase-pill phase-2">Phase 2</span></td><td class="num">2</td><td>Erst bei größerem Volumen relevant, hier nice to have.</td></tr>
-          <tr><td>7</td><td>TST03 (Spool)</td><td class="num">3,2 GB</td><td class="num">2,6 GB</td><td class="num">80 %</td><td><span class="phase-pill phase-1">Phase 1</span></td><td class="num">1</td><td>Technischer Quick Win, RSPO0041.</td></tr>
-          <tr><td>8</td><td>/FIS/MON_BCFILEP (Drittanbieter-Add-On)</td><td class="num">277,4 GB</td><td class="num">n/v</td><td class="num">n/v</td><td><span class="phase-pill phase-3">Phase 3</span></td><td class="num">> 8</td><td>Top-Priorität für Custom-Analyse mit dem Add-On-Verantwortlichen.</td></tr>
-          <tr><td>9</td><td>/FISXEE/RT_DAT (Drittanbieter-Add-On XEE)</td><td class="num">14,8 GB</td><td class="num">n/v</td><td class="num">n/v</td><td><span class="phase-pill phase-3">Phase 3</span></td><td class="num">> 4</td><td>Custom-Analyse, gemeinsam mit Add-On-Verantwortlichem.</td></tr>
+          <tr><td>1</td><td>SOFFCONT1 (Dokumente)</td><td class="num">115,8 GB</td><td class="num">110,0 GB</td><td class="num">95 %</td><td><span class="phase-pill phase-1">Phase 1</span></td><td class="num"><input class="pt-input" data-phase="1" type="number" min="0" step="1" value="4" /></td><td>Einrichtung und Migration der Dokumente auf externes Archivsystem (z.B. OpenText, KGS, etc.) oder im Rahmen entplexit SAP Archive Managed Service.</td></tr>
+          <tr><td>2</td><td>REPOLOAD (Repository-Cache)</td><td class="num">40,5 GB</td><td class="num">28,4 GB</td><td class="num">70 %</td><td><span class="phase-pill phase-1">Phase 1</span></td><td class="num"><input class="pt-input" data-phase="1" type="number" min="0" step="1" value="1" /></td><td>Technischer Quick Win, SAP Note 2388483.</td></tr>
+          <tr><td>3</td><td>FAGLFLEXA (FI klassisch)</td><td class="num">5,1 GB</td><td class="num">4,8 GB</td><td class="num">95 %</td><td><span class="phase-pill phase-2">Phase 2</span></td><td class="num"><input class="pt-input" data-phase="2" type="number" min="0" step="1" value="2" /></td><td>In S/4HANA normalerweise leer, Migrationsrest prüfen.</td></tr>
+          <tr><td>4</td><td>SCMON_DATA (Code Coverage)</td><td class="num">≈ 5 GB</td><td class="num">≈ 4 GB</td><td class="num">80 %</td><td><span class="phase-pill phase-1">Phase 1</span></td><td class="num"><input class="pt-input" data-phase="1" type="number" min="0" step="1" value="2" /></td><td>Cleanup oder Trace deaktivieren.</td></tr>
+          <tr><td>5</td><td>CDPOS / CDHDR (Änderungsbelege)</td><td class="num">6,0 GB</td><td class="num">3,6 GB</td><td class="num">60 %</td><td><span class="phase-pill phase-2">Phase 2</span></td><td class="num"><input class="pt-input" data-phase="2" type="number" min="0" step="1" value="4" /></td><td>Fachbereichs-Freigabe für Aufbewahrungsfristen erforderlich.</td></tr>
+          <tr><td>6</td><td>ACDOCA (Universal Journal)</td><td class="num">9,5 GB</td><td class="num">2,9 GB</td><td class="num">30 %</td><td><span class="phase-pill phase-2">Phase 2</span></td><td class="num"><input class="pt-input" data-phase="2" type="number" min="0" step="1" value="2" /></td><td>Erst bei größerem Volumen relevant, hier nice to have.</td></tr>
+          <tr><td>7</td><td>TST03 (Spool)</td><td class="num">3,2 GB</td><td class="num">2,6 GB</td><td class="num">80 %</td><td><span class="phase-pill phase-1">Phase 1</span></td><td class="num"><input class="pt-input" data-phase="1" type="number" min="0" step="1" value="1" /></td><td>Technischer Quick Win, RSPO0041.</td></tr>
+          <tr><td>8</td><td>/FIS/MON_BCFILEP (Drittanbieter-Add-On)</td><td class="num">277,4 GB</td><td class="num">n/v</td><td class="num">n/v</td><td><span class="phase-pill phase-3">Phase 3</span></td><td class="num"><input class="pt-input" data-phase="3" type="number" min="0" step="1" value="8" /></td><td>Top-Priorität für Custom-Analyse mit dem Add-On-Verantwortlichen.</td></tr>
+          <tr><td>9</td><td>/FISXEE/RT_DAT (Drittanbieter-Add-On XEE)</td><td class="num">14,8 GB</td><td class="num">n/v</td><td class="num">n/v</td><td><span class="phase-pill phase-3">Phase 3</span></td><td class="num"><input class="pt-input" data-phase="3" type="number" min="0" step="1" value="4" /></td><td>Custom-Analyse, gemeinsam mit Add-On-Verantwortlichem.</td></tr>
         </tbody>
         <tfoot>
-          <tr><td colspan="3">Quantifizierte Gesamt-Einsparung (Phase 1 + 2)</td><td class="num">≈ 156 GB</td><td class="num">⌀ 65 %</td><td colspan="2"></td><td>≈ 24,5 % der Gesamt-DB</td></tr>
+          <tr><td colspan="3">Quantifizierte Gesamt-Einsparung (Phase 1 + 2)</td><td class="num">≈ 156 GB</td><td class="num">⌀ 65 %</td><td>Aufwand P1+2</td><td class="num" id="pt-sum">16 PT</td><td>≈ 24,5 % der Gesamt-DB</td></tr>
         </tfoot>
       </table>
       <div class="footnote">Phase-3-Einsparungen sind nicht summiert, weil sie eine vorgelagerte Custom-Analyse erfordern.</div>
@@ -651,17 +641,6 @@
       </div>
 
       <p class="tco-note">Berechnung: Reduktion in GB × HANA-Preis pro GB × Jahre × (1 - Discount). Storage Tier 1 und Backup sind beim RISE-Modell im HANA-Preis enthalten.</p>
-
-      <div class="amort-box">
-        <div class="am-header">Amortisation Phase 1 + 2</div>
-        <div class="am-grid">
-          <div class="am-field"><label>Umsetzungsaufwand</label><div class="am-val" id="am-pt">16 PT</div></div>
-          <div class="am-field"><label>Tagessatz €</label><input id="am-rate" type="number" min="0" max="5000" step="100" value="2000" /></div>
-          <div class="am-field"><label>Investition</label><div class="am-val" id="am-invest">32.000 €</div></div>
-          <div class="am-field"><label>Amortisiert nach</label><div class="am-val amber" id="am-months">15,5 Monaten</div></div>
-        </div>
-        <div class="am-help" id="am-help">Bei 2.000 € Tagessatz und 16 PT Umsetzungsaufwand für Phase 1 und 2 ist die Investition nach rund 15,5 Monaten durch die jährliche TCO-Einsparung gedeckt.</div>
-      </div>
 
       <div class="cloud-check">
         <div class="cc-header">Cloud-Stufen-Check</div>
@@ -761,14 +740,11 @@
     { max_gb: 16384, eur_month: 200000, label: '\u2264 16 TB', estimated: true  }
   ];
   const PHASE_GB = { phase1: 145, phase2: 11, phase3: 292 };
-  const PHASE_PT = { phase1: 8, phase2: 8, phase3: 12 };
-  const AMORT_PHASES = ['phase1','phase2'];  // Amortisation bezieht sich auf Phase 1+2
   const $ = (id) => document.getElementById(id);
   const slHana = $('sld-hana'), vHana = $('val-hana');
   const slDisc = $('sld-discount'), vDisc = $('val-discount');
   const slDb = $('sld-dbsize'), vDb = $('val-dbsize');
   const cb1 = $('cb-phase1'), cb2 = $('cb-phase2'), cb3 = $('cb-phase3');
-  const amRate = $('am-rate'), amPt = $('am-pt'), amInvest = $('am-invest'), amMonths = $('am-months'), amHelp = $('am-help');
   let selectedYears = 1;
   const rGB = $('r-gb'), rGross = $('r-gross'), rDiscount = $('r-discount'), rTotal = $('r-total');
   const rJumpHeadline = $('r-jump-headline'), rStageNow = $('r-stage-now');
@@ -788,10 +764,6 @@
     slHana.value = vHana.value = p.hana;
     document.querySelectorAll('.profile-buttons button').forEach(b => b.classList.toggle('active', b.dataset.profile === key));
     recompute();
-  }
-  function fmtMonths(m) {
-    if (m === Infinity || isNaN(m)) return 'n/a';
-    return m.toLocaleString('de-DE', { maximumFractionDigits: 1 }) + ' Monaten';
   }
   function recompute() {
     let gb = 0;
@@ -813,28 +785,6 @@
     rGross.textContent = fmtEuro(gross) + yearLabel;
     rDiscount.textContent = '- ' + fmtEuro(discountAmount);
     rTotal.textContent = fmtEuro(net) + yearLabel;
-    // Amortisation (immer auf Jahresbasis, nur Phase 1+2)
-    let amortPt = 0;
-    if (cb1.checked) amortPt += PHASE_PT.phase1;
-    if (cb2.checked) amortPt += PHASE_PT.phase2;
-    const rate = Number(amRate.value || 0);
-    const invest = amortPt * rate;
-    // Einsparung fuer Amortisation: nur Phase 1+2 Anteil, Jahresbasis netto
-    let amortGb = 0;
-    if (cb1.checked) amortGb += PHASE_GB.phase1;
-    if (cb2.checked) amortGb += PHASE_GB.phase2;
-    const amortAnnualNet = amortGb * hanaRate * discountFactor;
-    const months = amortAnnualNet > 0 ? (invest / amortAnnualNet) * 12 : Infinity;
-    amPt.textContent = amortPt + ' PT';
-    amInvest.textContent = fmtEuro(invest);
-    amMonths.textContent = fmtMonths(months);
-    if (amortPt === 0) {
-      amHelp.textContent = 'Keine Phase aus 1 oder 2 gewaehlt - keine Amortisationsrechnung moeglich.';
-    } else if (amortAnnualNet <= 0) {
-      amHelp.textContent = 'Bei den aktuellen Werten ergibt sich keine jaehrliche Einsparung, daher keine Amortisation.';
-    } else {
-      amHelp.textContent = 'Bei ' + fmtEuro(rate) + ' Tagessatz und ' + amortPt + ' PT Umsetzungsaufwand ist die Investition von ' + fmtEuro(invest) + ' nach rund ' + fmtMonths(months) + ' durch die jaehrliche TCO-Einsparung von ' + fmtEuro(amortAnnualNet) + ' gedeckt.';
-    }
     // Cloud-Stufen-Bonus
     const dbsize = Number(vDb.value || 0);
     const newDb = Math.max(0, dbsize - gb);
@@ -865,7 +815,6 @@
     b.addEventListener('click', () => applyProfile(b.dataset.profile));
   });
   [cb1, cb2, cb3].forEach(cb => cb.addEventListener('change', recompute));
-  amRate.addEventListener('input', recompute);
   document.querySelectorAll('#year-buttons button').forEach(b => {
     b.addEventListener('click', () => {
       selectedYears = Number(b.dataset.years);
@@ -873,6 +822,21 @@
       recompute();
     });
   });
+  // PT-Summe in der Massnahmen-Tabelle (editierbare Aufwaende)
+  function updatePtSum() {
+    const ptSum = document.getElementById('pt-sum');
+    if (!ptSum) return;
+    let sum = 0;
+    document.querySelectorAll('input.pt-input').forEach(function(inp) {
+      const phase = inp.dataset.phase;
+      if (phase === '1' || phase === '2') sum += Number(inp.value || 0);
+    });
+    ptSum.textContent = sum + ' PT';
+  }
+  document.querySelectorAll('input.pt-input').forEach(function(inp) {
+    inp.addEventListener('input', updatePtSum);
+  });
+  updatePtSum();
   vDisc.value = slDisc.value = 10;
   vDb.value = slDb.value = 636;
   applyProfile('prod6');
