@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>SAP Archivierung - Potentialanalyse &amp; TCO · entplexit</title>
+<title>SAP Archivierung - Potentialanalyse & TCO · entplexit</title>
 <style>
   *, *::before, *::after { box-sizing: border-box; }
   html, body { margin: 0; padding: 0; }
@@ -425,6 +425,7 @@
     footer.foot { margin-top: 24px; }
     @page { margin: 1.5cm; }
   }
+
   footer.foot {
     margin-top: 64px;
     background: #474341;
@@ -469,12 +470,7 @@
     <div class="eyebrow">SAP Archivierung · Live-Report</div>
     <h1>SAP Archivierung - Potentialanalyse &amp; TCO</h1>
     <div class="accent-line"></div>
-    <div class="hero-meta">
-      <div><b>Beispiel-Konstellation</b><span>Demo-Bericht</span></div>
-      <div><b>SAP S/4HANA 2023 auf HANA</b><span>System / Stack</span></div>
-      <div><b>aktueller Stand</b><span>Demo-Datenstand</span></div>
-      <div><b>266 Active Users · 78 Fiori</b><span>Produktivnutzung</span></div>
-    </div>
+    <div class="hero-meta"><div><b>Beispiel-Konstellation</b><span>Demo-Bericht</span></div><div><b>S4P · SAP S/4HANA 2023 auf HANA Database</b><span>System / Stack</span></div><div><b>27.04.2026 - 03.05.2026</b><span>EWA-Datenstand</span></div><div><b>266 Active Users · 78 Fiori</b><span>Produktivnutzung</span></div></div>
     <div class="tagline">make <span class="accent-word">Archiv</span> <span class="light">simple</span></div>
   </div>
 </section>
@@ -483,18 +479,13 @@
 
   <section class="block">
     <h2><span class="num">1</span>Ausgangssituation und System-Kennzahlen</h2>
-    <p class="lede">Ein typisches mittelgro�Yes S/4HANA-System mit moderatem Wachstum. Performance ist erstklassig, Wachstum moderat. Das Volumen wird allerdings von einer einzigen Custom-Tabelle dominiert.</p>
-    <div class="source-note"><b>Datenquelle</b>: Demo-EWA-Report eines mittelgro�Yen S/4HANA-Systems</div>
-    <div class="kpi-grid">
-      <div class="kpi"><div class="label">DB-Grö�Ye gesamt</div><div class="value">636 <span class="unit">GB</span></div><div class="status amber">mittelgro�Y</div></div>
-      <div class="kpi"><div class="label">Wachstum letzter Monat</div><div class="value">6,75 <span class="unit">GB</span></div><div class="status green">moderat (�?^ 81 GB / Jahr)</div></div>
-      <div class="kpi"><div class="label">Dialog Response Time</div><div class="value">172 <span class="unit">ms</span></div><div class="status green">sehr gut</div></div>
-      <div class="kpi"><div class="label">Verfügbarkeit</div><div class="value">100 <span class="unit">%</span></div><div class="status green">exzellent</div></div>
-    </div>
+    <p class="lede">Analyse des Systems aus dem EWA-Report. Systemtyp S4. Die folgenden Kennzahlen und Top-Tabellen stammen direkt aus dem EarlyWatch Alert, die Empfehlungen ergänzt die entplexit-Wissensbasis.</p>
+    <div class="source-note"><b>Datenquelle</b>: EWA-Report S4P_20942592_800887599_2026-05-04_Y_EWA.DOC, Systemtyp S4</div>
+    <div class="kpi-grid"><div class="kpi"><div class="label">DB-Größe gesamt</div><div class="value">636 <span class="unit">GB</span></div><div class="status amber">mittelgroß</div></div><div class="kpi"><div class="label">Wachstum letzter Monat</div><div class="value">6,75 <span class="unit">GB</span></div><div class="status green">≈ 81 GB / Jahr</div></div><div class="kpi"><div class="label">Dialog Response Time</div><div class="value">172 <span class="unit">ms</span></div><div class="status green">sehr gut</div></div><div class="kpi"><div class="label">Verfügbarkeit</div><div class="value">100 <span class="unit">%</span></div><div class="status green">exzellent</div></div></div>
     <div class="usp-box">
       <div class="col">
         <h3>Warum entplexit, nicht SAP CAS?</h3>
-        <p>SAP Cloud Application Services für Datenvolumenoptimierung schlie�Yt <strong>BW-Systeme explizit aus</strong> und analysiert pro Service nur <strong>bis zu drei Standardtabellen</strong>.</p>
+        <p>SAP Cloud Application Services für Datenvolumenoptimierung schließt <strong>BW-Systeme explizit aus</strong> und analysiert pro Service nur <strong>bis zu drei Standardtabellen</strong>.</p>
         <p>Quelle: SAP CAS Scope-Dokument, Version 08/2025.</p>
       </div>
       <div class="col">
@@ -510,111 +501,42 @@
     <p class="lede">Eine einzige Custom-Tabelle aus einem Drittanbieter-Add-On macht 44 % der gesamten Datenbank aus.</p>
     <div class="source-note"><b>Datenquelle</b>: EWA-Sektion "Largest Column Tables (Size)" · Kategorisierung und Empfehlungen ergänzt aus entplexit-Wissensbasis</div>
     <table class="tbl">
-      <thead><tr><th>#</th><th>Tabelle</th><th class="num">Grö�Ye (GB)</th><th class="num">Anteil DB</th><th>Kategorie</th><th>Empfohlenes Vorgehen</th></tr></thead>
-      <tbody>
-        <tr><td>1</td><td><code>/FIS/MON_BCFILEP</code></td><td class="num">277,4</td><td class="num">43,6 %</td><td><span class="cat cat-custom">Custom</span></td><td>Drittanbieter-Add-On Monitoring · Phase 3 Custom-Analyse</td></tr>
-        <tr><td>2</td><td><code>SOFFCONT1</code></td><td class="num">115,8</td><td class="num">18,2 %</td><td><span class="cat cat-doc">Dokument</span></td><td>Auslagerung auf externes Archivsystem (z.B. OpenText, KGS, etc.) oder im Rahmen entplexit SAP Archive Managed Service</td></tr>
-        <tr><td>3</td><td><code>REPOLOAD</code></td><td class="num">40,5</td><td class="num">6,4 %</td><td><span class="cat cat-base">Basis</span></td><td>SAP Note 2388483 · Repository-Cache Cleanup</td></tr>
-        <tr><td>4</td><td><code>/FISXEE/RT_DAT</code></td><td class="num">14,8</td><td class="num">2,3 %</td><td><span class="cat cat-custom">Custom</span></td><td>Drittanbieter-Add-On (XEE) · Phase 3 Custom-Analyse</td></tr>
-        <tr><td>5</td><td><code>REPOSRC</code></td><td class="num">11,8</td><td class="num">1,9 %</td><td><span class="cat cat-base">Basis</span></td><td>Source-Code-Repository · keine Standard-Archivierung</td></tr>
-        <tr><td>6</td><td><code>ACDOCA</code></td><td class="num">9,5</td><td class="num">1,5 %</td><td><span class="cat cat-business">Business</span></td><td>S/4 Universal Journal · Archivierung erst bei grö�Yerem Volumen relevant</td></tr>
-        <tr><td>7</td><td><code>ECTD_XML_STR</code></td><td class="num">9,0</td><td class="num">1,4 %</td><td><span class="cat cat-tech">Technisch</span></td><td>XML-Strukturen · zu prüfen mit Anwendungsbereich</td></tr>
-        <tr><td>8</td><td><code>CDPOS</code></td><td class="num">6,0</td><td class="num">0,9 %</td><td><span class="cat cat-business">Business</span></td><td>Archivierungsobjekt CHANGE_DOC</td></tr>
-        <tr><td>9</td><td><code>DDNTT</code></td><td class="num">5,8</td><td class="num">0,9 %</td><td><span class="cat cat-base">Basis</span></td><td>Data Dictionary · keine Archivierung</td></tr>
-        <tr><td>10</td><td><code>FAGLFLEXA</code></td><td class="num">5,1</td><td class="num">0,8 %</td><td><span class="cat cat-business">Business</span></td><td>Klassisches FI-Hauptbuch · in S/4HANA normalerweise leer</td></tr>
-      </tbody>
+      <thead><tr><th>#</th><th>Tabelle</th><th class="num">Größe (GB)</th><th class="num">Anteil DB</th><th>Kategorie</th><th>Empfohlenes Vorgehen</th></tr></thead>
+      <tbody><tr><td>1</td><td><code>/FIS/MON_BCFILEP</code></td><td class="num">277,4</td><td class="num">43,6 %</td><td><span class="cat cat-custom">Custom</span></td><td>AKQUINET FIS Add-On · Custom · Klärung mit AKQUINET FIS Verantwortlichen</td></tr><tr><td>2</td><td><code>SOFFCONT1</code></td><td class="num">115,8</td><td class="num">18,2 %</td><td><span class="cat cat-doc">Dokument</span></td><td>Auslagerung auf externes Archivsystem. Einrichtung und Migration der Dokumente auf externes Archivsystem (z.B. OpenText, KGS, etc.) oder im Rahmen entplexit SAP Archive Managed Service.</td></tr><tr><td>3</td><td><code>REPOLOAD</code></td><td class="num">40,5</td><td class="num">6,4 %</td><td><span class="cat cat-base">Basis</span></td><td>Note 2388483. Repository-Cache. Cleanup gemäß SAP Note 2388483.</td></tr><tr><td>4</td><td><code>/FISXEE/RT_DAT</code></td><td class="num">14,8</td><td class="num">2,3 %</td><td><span class="cat cat-custom">Custom</span></td><td>AKQUINET FIS XEE · Custom · Klärung mit AKQUINET FIS Verantwortlichen</td></tr><tr><td>5</td><td><code>REPOSRC</code></td><td class="num">11,8</td><td class="num">1,9 %</td><td><span class="cat cat-base">Basis</span></td><td>Source-Code-Repository. Keine Archivierung. Bei großem Wachstum: Custom-Code-Audit.</td></tr><tr><td>6</td><td><code>ACDOCA</code></td><td class="num">9,5</td><td class="num">1,5 %</td><td><span class="cat cat-business">Business</span></td><td>Archivierungsobjekt FI_ACDOCA. S/4 Universal Journal. Archivierung selten genutzt, erst ab &gt;100 GB sinnvoll. SAP Note 2828501.</td></tr><tr><td>7</td><td><code>ECTD_XML_STR</code></td><td class="num">9,0</td><td class="num">1,4 %</td><td><span class="cat cat-base">unklar</span></td><td>Keine Mapping-Regel gefunden, manuell bewerten.</td></tr><tr><td>8</td><td><code>CDPOS</code></td><td class="num">6,0</td><td class="num">0,9 %</td><td><span class="cat cat-business">Business</span></td><td>Archivierungsobjekt CHANGE_DOC. Änderungsbelege. Aufbewahrungsfrist mit Compliance abklären.</td></tr><tr><td>9</td><td><code>DDNTT</code></td><td class="num">5,8</td><td class="num">0,9 %</td><td><span class="cat cat-base">Basis</span></td><td>Data Dictionary. Keine Archivierung möglich.</td></tr><tr><td>10</td><td><code>FAGLFLEXA</code></td><td class="num">5,1</td><td class="num">0,8 %</td><td><span class="cat cat-business">Business</span></td><td>Archivierungsobjekt FI_DOCUMNT. In S/4HANA normalerweise leer. Wenn voll: Migrationsproblem prüfen.</td></tr></tbody>
       <tfoot><tr><td colspan="2">Summe Top 10</td><td class="num">495,7</td><td class="num">77,9 %</td><td colspan="2">der Gesamt-DB</td></tr></tfoot>
     </table>
-    <p class="lede" style="margin-top:14px">Zusätzlich relevant aus weiteren EWA-Sektionen: <code>TST03</code> (Spool, 3,2 GB), <code>FPLAYOUTT</code> (Form Layouts, 3,2 GB), <code>SCMON_DATA</code> (240 Mio Records, Custom Code Coverage, ca. 5 GB).</p>
+    
   </section>
 
   <section class="block">
     <h2><span class="num">3</span>Mögliche Handlungsfelder und Ergebnisse</h2>
     <p class="lede">Drei Hebel dominieren das Bild. Ein vierter ist eine ehrliche Beobachtung: das Wachstum ist hier kein akutes Problem.</p>
-    <div class="findings">
-      <div class="finding">
-        <div class="f-head"><h4>1 · Custom-Tabelle dominiert die DB</h4><span class="severity">hoch</span></div>
-        <p>Die Drittanbieter-Add-On Tabelle <code>/FIS/MON_BCFILEP</code> belegt allein 277 GB und damit 44 % der gesamten Datenbank. Zweck und Aufbewahrungsdauer dieser Monitoring-Daten sind mit dem Add-On-Verantwortlichen zu klären.</p>
-      </div>
-      <div class="finding">
-        <div class="f-head"><h4>2 · Dokumente in der HANA-DB</h4><span class="severity">hoch</span></div>
-        <p>116 GB liegen in <code>SOFFCONT1</code>, also Anhängen direkt im teuren In-Memory-Speicher. Auslagerung auf ein externes Archivsystem (z.B. OpenText, KGS, etc.) oder im Rahmen des entplexit SAP Archive Managed Service reduziert die DB sofort um rund 18 %.</p>
-      </div>
-      <div class="finding">
-        <div class="f-head"><h4>3 · Basis-Cleanup-Reserven</h4><span class="severity med">mittel</span></div>
-        <p>40 GB <code>REPOLOAD</code>, 12 GB <code>REPOSRC</code>, 240 Mio Records in <code>SCMON_DATA</code> sowie kleinere Posten in <code>TST03</code> und Forms. Klassische Bordmittel-Aufräumthemen ohne Fachbereichs-Freigabe.</p>
-      </div>
-      <div class="finding">
-        <div class="f-head"><h4>4 · Wachstum aktuell entspannt</h4><span class="severity low">niedrig</span></div>
-        <p>6,75 GB pro Monat sind moderat. Solange die beiden Custom-Tabellen nicht weiterwachsen, ist das System aus DVM-Sicht nicht akut gefährdet. Trotzdem lohnt der Check, weil ein Add-On-Update die Lage schnell drehen kann.</p>
-      </div>
-    </div>
+    <div class="findings"><div class="finding"><div class="f-head"><h4>1 · Custom-Tabelle dominiert die DB</h4><span class="severity ">hoch</span></div><p>Die Custom-Tabelle /FIS/MON_BCFILEP belegt 277.36 GB und damit 43.6 % der gesamten Datenbank. Zweck und Aufbewahrungsdauer sind mit dem Add-On- oder Entwicklungs-Verantwortlichen zu klären.</p></div><div class="finding"><div class="f-head"><h4>2 · Dokumente in der HANA-DB</h4><span class="severity ">hoch</span></div><p>115.8 GB liegen in Dokument-Tabellen, also Anhängen direkt im teuren In-Memory-Speicher. Auslagerung auf ein externes Archivsystem (z.B. OpenText, KGS, etc.) oder im Rahmen des entplexit SAP Archive Managed Service reduziert die DB sofort um rund 18.2 %.</p></div><div class="finding"><div class="f-head"><h4>3 · Basis- und Technik-Cleanup-Reserven</h4><span class="severity med">mittel</span></div><p>Rund 58.1 GB in technischen und Basis-Tabellen (REPOLOAD, REPOSRC, DDNTT u.a.). Klassische Bordmittel-Aufräumthemen, überwiegend ohne Fachbereichs-Freigabe umsetzbar.</p></div><div class="finding"><div class="f-head"><h4>4 · Wachstum 6,75 GB pro Monat</h4><span class="severity low">niedrig</span></div><p>Das System wächst um 6,75 GB pro Monat, hochgerechnet rund 81 GB pro Jahr. Das ist moderat. Der Nutzen einer Bereinigung liegt hier mehr in der Wachstumsverzögerung als in akuter Entlastung.</p></div></div>
   </section>
 
   <section class="block">
     <h2><span class="num">4</span>Archivierungspotential</h2>
-    <p class="lede">Das Archivierungspotential des Systems ist als <strong>moderat bis hoch</strong> einzustufen. Allein durch die Quick Wins und Standard-Archivierungsobjekte können rund 156 GB freigegeben werden. Die Custom-Tabellen-Analyse bietet zusätzliches, noch unquantifiziertes Potential von bis zu 292 GB.</p>
+    <p class="lede">Durch Quick Wins und Standard-Archivierung sind rund 150 GB freigebbar (23,5 % der DB). Die Phase-3-Analyse bietet zusätzliches Potential von bis zu 292 GB.</p>
     <div class="potential-overview">
-      <h3>�obersicht</h3>
+      <h3>Übersicht</h3>
       <p class="intro">Auf einen Blick: was ist da, was ist analysiert, was ist umsetzbar.</p>
       <table>
         <thead><tr><th>Metrik</th><th style="text-align:right">Wert</th><th>Anteil und Einordnung</th></tr></thead>
-        <tbody>
-          <tr><td class="metric">DB-Grö�Ye gesamt</td><td class="value">636 GB</td><td class="note">Ausgangsbasis</td></tr>
-          <tr><td class="metric">Top 10 Tabellen analysiert</td><td class="value">495,7 GB</td><td class="note">77,9 % der Gesamt-DB</td></tr>
-          <tr><td class="metric">Davon mit bekanntem Standard-Potential</td><td class="value">156 GB</td><td class="note">Phase 1 plus Phase 2, sofort umsetzbar</td></tr>
-          <tr class="highlight"><td class="metric"><strong>Quantifizierte Gesamt-Einsparung</strong></td><td class="value">�?^ 156 GB</td><td class="note">�?^ 24,5 % Reduktion der Gesamt-DB</td></tr>
-          <tr><td class="metric">Custom-Tabellen Phase 3 (Analysepotential)</td><td class="value">+ 292 GB</td><td class="note">Im Best Case bis zu 70 % DB-Reduktion erreichbar</td></tr>
-        </tbody>
+        <tbody><tr><td class="metric">DB-Größe gesamt</td><td class="value">636 GB</td><td class="note">Ausgangsbasis</td></tr><tr><td class="metric">Top 10 Tabellen analysiert</td><td class="value">495,7 GB</td><td class="note">77,9 % der Gesamt-DB</td></tr><tr><td class="metric">Davon mit bekanntem Standard-Potential</td><td class="value">149,7 GB</td><td class="note">Phase 1 plus Phase 2, sofort umsetzbar</td></tr><tr class="highlight"><td class="metric"><strong>Quantifizierte Gesamt-Einsparung</strong></td><td class="value">≈ 149,7 GB</td><td class="note">≈ 23,5 % Reduktion der Gesamt-DB</td></tr><tr><td class="metric">Custom- / Phase-3-Tabellen (Analysepotential)</td><td class="value">+ 292,2 GB</td><td class="note">Zusätzliches Potential nach vorgelagerter Analyse</td></tr></tbody>
       </table>
     </div>
     <div class="massnahmen">
       <h3 style="margin:0 0 10px;font-size:18px;color:#474341;">Einsparungen pro Bereich</h3>
       <table class="tbl">
         <thead><tr><th>#</th><th>Bereich / Tabelle</th><th class="num">Ist-Volumen</th><th class="num">Geschätzte Einsparung</th><th class="num">Rate</th><th>Phase</th><th class="num">Aufwand (PT)</th><th>Einordnung</th></tr></thead>
-        <tbody>
-          <tr><td>1</td><td>SOFFCONT1 (Dokumente)</td><td class="num">115,8 GB</td><td class="num">110,0 GB</td><td class="num">95 %</td><td><span class="phase-pill phase-1">Phase 1</span></td><td class="num"><input class="pt-input" data-phase="1" type="number" min="0" step="1" value="4" /></td><td>Einrichtung und Migration der Dokumente auf externes Archivsystem (z.B. OpenText, KGS, etc.) oder im Rahmen entplexit SAP Archive Managed Service.</td></tr>
-          <tr><td>2</td><td>REPOLOAD (Repository-Cache)</td><td class="num">40,5 GB</td><td class="num">28,4 GB</td><td class="num">70 %</td><td><span class="phase-pill phase-1">Phase 1</span></td><td class="num"><input class="pt-input" data-phase="1" type="number" min="0" step="1" value="1" /></td><td>Technischer Quick Win, SAP Note 2388483.</td></tr>
-          <tr><td>3</td><td>FAGLFLEXA (FI klassisch)</td><td class="num">5,1 GB</td><td class="num">4,8 GB</td><td class="num">95 %</td><td><span class="phase-pill phase-2">Phase 2</span></td><td class="num"><input class="pt-input" data-phase="2" type="number" min="0" step="1" value="2" /></td><td>In S/4HANA normalerweise leer, Migrationsrest prüfen.</td></tr>
-          <tr><td>4</td><td>SCMON_DATA (Code Coverage)</td><td class="num">�?^ 5 GB</td><td class="num">�?^ 4 GB</td><td class="num">80 %</td><td><span class="phase-pill phase-1">Phase 1</span></td><td class="num"><input class="pt-input" data-phase="1" type="number" min="0" step="1" value="2" /></td><td>Cleanup oder Trace deaktivieren.</td></tr>
-          <tr><td>5</td><td>CDPOS / CDHDR (�"nderungsbelege)</td><td class="num">6,0 GB</td><td class="num">3,6 GB</td><td class="num">60 %</td><td><span class="phase-pill phase-2">Phase 2</span></td><td class="num"><input class="pt-input" data-phase="2" type="number" min="0" step="1" value="4" /></td><td>Fachbereichs-Freigabe für Aufbewahrungsfristen erforderlich.</td></tr>
-          <tr><td>6</td><td>ACDOCA (Universal Journal)</td><td class="num">9,5 GB</td><td class="num">2,9 GB</td><td class="num">30 %</td><td><span class="phase-pill phase-2">Phase 2</span></td><td class="num"><input class="pt-input" data-phase="2" type="number" min="0" step="1" value="2" /></td><td>Erst bei grö�Yerem Volumen relevant, hier nice to have.</td></tr>
-          <tr><td>7</td><td>TST03 (Spool)</td><td class="num">3,2 GB</td><td class="num">2,6 GB</td><td class="num">80 %</td><td><span class="phase-pill phase-1">Phase 1</span></td><td class="num"><input class="pt-input" data-phase="1" type="number" min="0" step="1" value="1" /></td><td>Technischer Quick Win, RSPO0041.</td></tr>
-          <tr><td>8</td><td>/FIS/MON_BCFILEP (Drittanbieter-Add-On)</td><td class="num">277,4 GB</td><td class="num">n/v</td><td class="num">n/v</td><td><span class="phase-pill phase-3">Phase 3</span></td><td class="num"><input class="pt-input" data-phase="3" type="number" min="0" step="1" value="8" /></td><td>Top-Priorität für Custom-Analyse mit dem Add-On-Verantwortlichen.</td></tr>
-          <tr><td>9</td><td>/FISXEE/RT_DAT (Drittanbieter-Add-On XEE)</td><td class="num">14,8 GB</td><td class="num">n/v</td><td class="num">n/v</td><td><span class="phase-pill phase-3">Phase 3</span></td><td class="num"><input class="pt-input" data-phase="3" type="number" min="0" step="1" value="4" /></td><td>Custom-Analyse, gemeinsam mit Add-On-Verantwortlichem.</td></tr>
-        </tbody>
+        <tbody><tr><td>1</td><td>/FIS/MON_BCFILEP</td><td class="num">277,4 GB</td><td class="num">n/v</td><td class="num">n/v</td><td><span class="phase-pill phase-3">Phase 3</span></td><td class="num"><input class="pt-input" data-phase="3" type="number" min="0" step="1" value="8" /></td><td>AKQUINET FIS Add-On · Custom · Klärung mit AKQUINET FIS Verantwortlichen</td></tr><tr><td>2</td><td>SOFFCONT1</td><td class="num">115,8 GB</td><td class="num">110,0 GB</td><td class="num">95 %</td><td><span class="phase-pill phase-1">Phase 1</span></td><td class="num"><input class="pt-input" data-phase="1" type="number" min="0" step="1" value="4" /></td><td>Auslagerung auf externes Archivsystem. Einrichtung und Migration der Dokumente auf externes Archivsystem (z.B. OpenText, KGS, etc.) oder im Rahmen entplexit SAP Archive Managed Service.</td></tr><tr><td>3</td><td>REPOLOAD</td><td class="num">40,5 GB</td><td class="num">28,3 GB</td><td class="num">70 %</td><td><span class="phase-pill phase-1">Phase 1</span></td><td class="num"><input class="pt-input" data-phase="1" type="number" min="0" step="1" value="1" /></td><td>Note 2388483. Repository-Cache. Cleanup gemäß SAP Note 2388483.</td></tr><tr><td>4</td><td>/FISXEE/RT_DAT</td><td class="num">14,8 GB</td><td class="num">n/v</td><td class="num">n/v</td><td><span class="phase-pill phase-3">Phase 3</span></td><td class="num"><input class="pt-input" data-phase="3" type="number" min="0" step="1" value="8" /></td><td>AKQUINET FIS XEE · Custom · Klärung mit AKQUINET FIS Verantwortlichen</td></tr><tr><td>5</td><td>ACDOCA</td><td class="num">9,5 GB</td><td class="num">2,9 GB</td><td class="num">30 %</td><td><span class="phase-pill phase-2">Phase 2</span></td><td class="num"><input class="pt-input" data-phase="2" type="number" min="0" step="1" value="6" /></td><td>Archivierungsobjekt FI_ACDOCA. S/4 Universal Journal. Archivierung selten genutzt, erst ab &gt;100 GB sinnvoll. SAP Note 2828501.</td></tr><tr><td>6</td><td>CDPOS</td><td class="num">6,0 GB</td><td class="num">3,6 GB</td><td class="num">60 %</td><td><span class="phase-pill phase-2">Phase 2</span></td><td class="num"><input class="pt-input" data-phase="2" type="number" min="0" step="1" value="4" /></td><td>Archivierungsobjekt CHANGE_DOC. Änderungsbelege. Aufbewahrungsfrist mit Compliance abklären.</td></tr><tr><td>7</td><td>FAGLFLEXA</td><td class="num">5,1 GB</td><td class="num">4,9 GB</td><td class="num">95 %</td><td><span class="phase-pill phase-2">Phase 2</span></td><td class="num"><input class="pt-input" data-phase="2" type="number" min="0" step="1" value="4" /></td><td>Archivierungsobjekt FI_DOCUMNT. In S/4HANA normalerweise leer. Wenn voll: Migrationsproblem prüfen.</td></tr></tbody>
         <tfoot>
-          <tr><td colspan="3">Quantifizierte Gesamt-Einsparung (Phase 1 + 2)</td><td class="num">�?^ 156 GB</td><td class="num">�O? 65 %</td><td>Aufwand P1+2</td><td class="num" id="pt-sum">16 PT</td><td>�?^ 24,5 % der Gesamt-DB</td></tr>
+          <tr><td colspan="3">Quantifizierte Gesamt-Einsparung (Phase 1 + 2)</td><td class="num">≈ 149,7 GB</td><td class="num">⌀ 70 %</td><td>Aufwand P1+2</td><td class="num" id="pt-sum">19 PT</td><td>≈ 23,5 % der Gesamt-DB</td></tr>
         </tfoot>
       </table>
       <div class="footnote">Phase-3-Einsparungen sind nicht summiert, weil sie eine vorgelagerte Custom-Analyse erfordern.</div>
     </div>
-    <div class="phase-cards">
-      <div class="phase-card">
-        <h4>Phase 1</h4>
-        <div class="ph-title">Quick Wins · Basis &amp; Dokumente</div>
-        <div class="ph-line"><span class="lab">Einsparung</span><span>�?^ 145 GB</span></div>
-        <div class="ph-line"><span class="lab">Aufwand</span><span>8 PT</span></div>
-        <div class="ph-line"><span class="lab">Freigabe</span><span>IT / Basis</span></div>
-        <div class="ph-line"><span class="lab">Sichtbar in</span><span>1�?"3 Wochen</span></div>
-      </div>
-      <div class="phase-card">
-        <h4>Phase 2</h4>
-        <div class="ph-title">Standard-Archivierung</div>
-        <div class="ph-line"><span class="lab">Einsparung</span><span>�?^ 11 GB</span></div>
-        <div class="ph-line"><span class="lab">Aufwand</span><span>8 PT</span></div>
-        <div class="ph-line"><span class="lab">Freigabe</span><span>Fachbereich</span></div>
-        <div class="ph-line"><span class="lab">Sichtbar in</span><span>4�?"8 Wochen</span></div>
-      </div>
-      <div class="phase-card">
-        <h4>Phase 3</h4>
-        <div class="ph-title">Custom-Analyse</div>
-        <div class="ph-line"><span class="lab">Einsparung</span><span>bis 292 GB</span></div>
-        <div class="ph-line"><span class="lab">Aufwand</span><span>&gt; 12 PT</span></div>
-        <div class="ph-line"><span class="lab">Freigabe</span><span>Add-On-Verantwortlicher</span></div>
-        <div class="ph-line"><span class="lab">Sichtbar in</span><span>nach Klärung</span></div>
-      </div>
-    </div>
+    <div class="phase-cards"><div class="phase-card"><h4>Phase 1</h4><div class="ph-title">Quick Wins · Basis &amp; Dokumente</div><div class="ph-line"><span class="lab">Einsparung</span><span>≈ 138 GB</span></div><div class="ph-line"><span class="lab">Aufwand</span><span>5 PT</span></div><div class="ph-line"><span class="lab">Freigabe</span><span>IT / Basis</span></div><div class="ph-line"><span class="lab">Sichtbar in</span><span>1-3 Wochen</span></div></div><div class="phase-card"><h4>Phase 2</h4><div class="ph-title">Standard-Archivierung</div><div class="ph-line"><span class="lab">Einsparung</span><span>≈ 11 GB</span></div><div class="ph-line"><span class="lab">Aufwand</span><span>14 PT</span></div><div class="ph-line"><span class="lab">Freigabe</span><span>Fachbereich</span></div><div class="ph-line"><span class="lab">Sichtbar in</span><span>4-8 Wochen</span></div></div><div class="phase-card"><h4>Phase 3</h4><div class="ph-title">Custom-Analyse</div><div class="ph-line"><span class="lab">Volumen</span><span>bis 292 GB</span></div><div class="ph-line"><span class="lab">Aufwand</span><span>16 PT</span></div><div class="ph-line"><span class="lab">Freigabe</span><span>Add-On-Verantwortlicher</span></div><div class="ph-line"><span class="lab">Sichtbar in</span><span>nach Klärung</span></div></div></div>
   </section>
 
   <section class="block">
@@ -622,20 +544,20 @@
     <p class="lede">Damit die Einsparung in <strong>Euro</strong> gerechnet werden kann, brauchen wir Ihre Hausnummer pro GB. Wählen Sie unten ein passendes Profil oder ziehen Sie die Slider auf Ihre eigenen Werte. Die Ergebnisse aktualisieren sich live.</p>
     <div class="tco-interactive">
       <h3>TCO-Rechner · live</h3>
-      <p class="tagline-tco">Jedes GB im produktiven HANA-System kostet Geld. Wählen Sie eine Prod-Grö�Yenklasse oder setzen Sie Ihren eigenen GB-Preis. <strong style="color:#EA7800">Werte basieren auf realen RISE-Cloud-Listpreisen produktiver HANA-Systeme.</strong></p>
+      <p class="tagline-tco">Jedes GB im produktiven HANA-System kostet Geld. Wählen Sie eine Prod-Größenklasse oder setzen Sie Ihren eigenen GB-Preis. <strong style="color:#EA7800">Werte basieren auf realen RISE-Cloud-Listpreisen produktiver HANA-Systeme.</strong></p>
 
       <p class="tagline-tco">Schritt 1 · Preisbasis wählen.</p>
       <div class="profile-buttons">
-        <button data-profile="prod4">Prod �?^ 4 TB · 161 �,�/GB</button>
-        <button data-profile="prod6" class="active">Prod �?^ 6 TB · 176 �,�/GB</button>
-        <button data-profile="prod8">Prod �?^ 8 TB · 166 �,�/GB</button>
+        <button data-profile="prod4">Prod ≈ 4 TB · 161 €/GB</button>
+        <button data-profile="prod6" class="active">Prod ≈ 6 TB · 176 €/GB</button>
+        <button data-profile="prod8">Prod ≈ 8 TB · 166 €/GB</button>
       </div>
       <div class="sliders">
         <div class="slider-block">
-          <label>HANA · �,�/GB pro Jahr</label>
+          <label>HANA · €/GB pro Jahr</label>
           <input id="val-hana" class="val-display" type="number" min="0" max="400" step="1" />
           <input id="sld-hana" type="range" min="100" max="250" step="1" />
-          <div class="range-meta"><span>100 �,�</span><span>250 �,�</span></div>
+          <div class="range-meta"><span>100 €</span><span>250 €</span></div>
         </div>
         <div class="slider-block">
           <label>Discount · % (Annahme 10)</label>
@@ -644,7 +566,7 @@
           <div class="range-meta"><span>0 %</span><span>25 %</span></div>
         </div>
         <div class="slider-block">
-          <label>Aktuelle DB-Grö�Ye · GB (für Stufen-Check)</label>
+          <label>Aktuelle DB-Größe · GB (für Stufen-Check)</label>
           <input id="val-dbsize" class="val-display" type="number" min="0" max="20000" step="100" />
           <input id="sld-dbsize" type="range" min="0" max="16000" step="100" />
           <div class="range-meta"><span>0 GB</span><span>16 TB</span></div>
@@ -667,18 +589,18 @@
 
       <div class="tco-results">
         <div class="item"><div class="num" id="r-gb">156 GB</div><div class="lab">Reduktion DB</div></div>
-        <div class="item"><div class="num" id="r-gross">27.456 �,�</div><div class="lab">Einsparung brutto</div></div>
-        <div class="item"><div class="num" id="r-discount">- 2.746 �,�</div><div class="lab">Discount-Abzug</div></div>
-        <div class="item"><div class="num" id="r-total">24.710 �,�</div><div class="lab">TCO-Einsparung netto</div></div>
+        <div class="item"><div class="num" id="r-gross">27.456 €</div><div class="lab">Einsparung brutto</div></div>
+        <div class="item"><div class="num" id="r-discount">- 2.746 €</div><div class="lab">Discount-Abzug</div></div>
+        <div class="item"><div class="num" id="r-total">24.710 €</div><div class="lab">TCO-Einsparung netto</div></div>
       </div>
 
-      <p class="tco-note">Berechnung: Reduktion in GB �- HANA-Preis pro GB �- Jahre �- (1 - Discount). Storage Tier 1 und Backup sind beim RISE-Modell im HANA-Preis enthalten.</p>
+      <p class="tco-note">Berechnung: Reduktion in GB × HANA-Preis pro GB × Jahre × (1 - Discount). Storage Tier 1 und Backup sind beim RISE-Modell im HANA-Preis enthalten.</p>
 
       <div class="cloud-check">
         <div class="cc-header">Cloud-Stufen-Check</div>
-        <div class="cc-row"><span class="cc-lab">Aktuelle Stufe</span><span class="cc-val" id="r-stage-now">�?� 4 TB · 55.000 �,�/Monat</span></div>
-        <div class="cc-row"><span class="cc-lab">DB-Grö�Ye nach Reduktion</span><span class="cc-val" id="r-newdb">480 GB</span></div>
-        <div class="cc-row"><span class="cc-lab">Neue Stufe</span><span class="cc-val green" id="r-stage-new">�?� 4 TB · 55.000 �,�/Monat</span></div>
+        <div class="cc-row"><span class="cc-lab">Aktuelle Stufe</span><span class="cc-val" id="r-stage-now">≤ 4 TB · 55.000 €/Monat</span></div>
+        <div class="cc-row"><span class="cc-lab">DB-Größe nach Reduktion</span><span class="cc-val" id="r-newdb">480 GB</span></div>
+        <div class="cc-row"><span class="cc-lab">Neue Stufe</span><span class="cc-val green" id="r-stage-new">≤ 4 TB · 55.000 €/Monat</span></div>
         <div class="cc-row cc-bonus"><span class="cc-lab">Stufensprung-Bonus</span><span class="cc-val amber" id="r-jump-headline">wird geprüft</span></div>
         <div class="cc-help" id="stair-help">Cloud-HANA wird in festen Stufen verkauft. Wenn die Reduktion einen Stufensprung ermöglicht, kommt die Stufendifferenz zusätzlich obendrauf. Andernfalls liegt der Nutzen in der oben gezeigten TCO-Einsparung plus der Verzögerung des nächsten Stufensprungs.</div>
       </div>
@@ -700,46 +622,30 @@
         <div class="pkg featured">
           <div class="name">Advanced · Empfohlen</div>
           <h4>Steuerung &amp; Strategie</h4>
-          <ul><li>Alles aus Basic</li><li>Data Volume Scorecard</li><li>Archivierungs- und Löschstrategie</li><li>Priorisierte Handlungsempfehlungen</li><li>Regelmä�Yiger Service-Call</li></ul>
+          <ul><li>Alles aus Basic</li><li>Data Volume Scorecard</li><li>Archivierungs- und Löschstrategie</li><li>Priorisierte Handlungsempfehlungen</li><li>Regelmäßiger Service-Call</li></ul>
           <div class="focus">Fokus: gezielte Reduktion und Entscheidungsgrundlagen</div>
         </div>
         <div class="pkg">
           <div class="name">Premium</div>
           <h4>Operative Verantwortung</h4>
-          <ul><li>Alles aus Advanced</li><li>Planung und �oberwachung Archivierungsläufe</li><li>Fachbereichs-Abstimmung</li><li>Audit- und Revisionsdokumentation</li></ul>
+          <ul><li>Alles aus Advanced</li><li>Planung und Überwachung Archivierungsläufe</li><li>Fachbereichs-Abstimmung</li><li>Audit- und Revisionsdokumentation</li></ul>
           <div class="focus">Fokus: echte Entlastung und messbare Kostensenkung</div>
         </div>
       </div>
       <div class="next-steps">
         <h4 style="color:#474341;font-size:14px;margin:24px 0 8px;">Konkrete nächste Schritte</h4>
-        <ol>
-          <li><b>Workshop (1 Tag, gemeinsam)</b>: Validierung der Befunde, Klärung der Custom-Add-On-Verantwortung, Priorisierung der Phasen.</li>
-          <li><b>Add-On-Inventur (Phase 3)</b>: Analyse von <code>/FIS/MON_BCFILEP</code> mit dem Add-On-Verantwortlichen.</li>
-          <li><b>Pilotma�Ynahme Phase 1</b>: REPOLOAD-Cleanup als technischer Quick Win, sichtbares Ergebnis innerhalb einer Woche.</li>
-          <li><b>�obergabe in Managed Service</b>: Empfehlung Paket Basic, Aufstockung auf Advanced wenn Add-On-Cleanup ansteht.</li>
-        </ol>
+        <ol><li><b>Workshop (1 Tag, gemeinsam)</b>: Validierung der Befunde, Klärung der Verantwortlichkeiten, Priorisierung der Phasen.</li><li><b>Phase-3-Analyse</b>: Untersuchung von <code>/FIS/MON_BCFILEP</code> (277 GB) mit dem zuständigen Verantwortlichen.</li><li><b>Pilotmaßnahme Phase 1</b>: <code>SOFFCONT1</code> als sichtbarer Quick Win zum Einstieg.</li><li><b>Übergabe in Managed Service</b>: laufende Betreuung im entplexit SAP Data Volume Control, Paketwahl nach Reifegrad.</li></ol>
       </div>
     </div>
   </section>
 
   <section class="block">
     <h2><span class="num">7</span>Datenquellen-Coverage · was steht im EWA, was fehlt</h2>
-    <p class="lede">Transparente �obersicht: welche Datenpunkte konnten wir aus dem EWA ziehen, welche mussten wir aus entplexit-Wissen ableiten, welche bleiben offen.</p>
+    <p class="lede">Transparente Übersicht: welche Datenpunkte konnten wir aus dem EWA ziehen, welche mussten wir aus entplexit-Wissen ableiten, welche bleiben offen.</p>
     <div class="data-coverage">
       <table>
         <thead><tr><th>Datenpunkt</th><th>Quelle</th><th>Verfügbarkeit</th><th>Bemerkung</th></tr></thead>
-        <tbody>
-          <tr><td>System-Stammdaten</td><td>EWA-Header</td><td><span class="badge-yes">vollständig</span></td><td>SID, Release, DB, Kunde, Standort</td></tr>
-          <tr><td>DB-Grö�Ye gesamt</td><td>EWA Performance Indicators</td><td><span class="badge-yes">vorhanden</span></td><td>636,27 GB</td></tr>
-          <tr><td>Wachstum</td><td>EWA Performance Indicators</td><td><span class="badge-part">nur 1 Monat</span></td><td>Kein Trend über mehrere Monate im EWA</td></tr>
-          <tr><td>Performance KPIs</td><td>EWA Performance Indicators</td><td><span class="badge-yes">vollständig</span></td><td>Response Time, Verfügbarkeit, CPU, User-Anzahl</td></tr>
-          <tr><td>Top-N Tabellen Grö�Ye</td><td>EWA "Largest Column Tables"</td><td><span class="badge-yes">vollständig</span></td><td>Top 10 plus Row-Tables und Records-basiert</td></tr>
-          <tr><td>Tabellen-Mapping</td><td>entplexit Knowledge Base</td><td><span class="badge-yes">aus Erfahrung</span></td><td>Syntax-Benchmark plus SAP-Standardobjekte</td></tr>
-          <tr><td>Bestehender Archivierungsstand</td><td>EWA DVM-Sektion</td><td><span class="badge-no">leer</span></td><td>Verweis auf SAP for Me, keine konkreten Daten im EWA</td></tr>
-          <tr><td>Aufbewahrungsfristen</td><td>nur über Workshop ableitbar</td><td><span class="badge-no">offen</span></td><td>Klärung mit Fachbereichen erforderlich</td></tr>
-          <tr><td>Custom-Tabellen-Zweck</td><td>nur über Add-On-Verantwortlichen</td><td><span class="badge-no">offen</span></td><td>/FIS-Tabellen brauchen Klärung mit dem Add-On-Verantwortlichen</td></tr>
-          <tr><td>TCO-Sätze in Euro</td><td>entplexit Default-Sätze · interaktiv anpassbar</td><td><span class="badge-yes">interaktiv</span></td><td>Kunde kann live im TCO-Rechner eigene Sätze setzen</td></tr>
-        </tbody>
+        <tbody><tr><td>System-Stammdaten</td><td>EWA-Header</td><td><span class="badge-yes">vorhanden</span></td><td>SID, Release, DB, Kunde</td></tr><tr><td>DB-Größe gesamt</td><td>EWA Performance-Indikatoren</td><td><span class="badge-yes">vorhanden</span></td><td></td></tr><tr><td>Wachstum</td><td>EWA Performance-Indikatoren</td><td><span class="badge-yes">vorhanden</span></td><td>Monatswert, kein Mehrjahres-Trend im EWA</td></tr><tr><td>Performance-KPIs</td><td>EWA Performance-Indikatoren</td><td><span class="badge-yes">vorhanden</span></td><td>Response Time, Verfügbarkeit, User-Anzahl</td></tr><tr><td>Top-N Tabellen</td><td>EWA Tabellen-Sektion</td><td><span class="badge-yes">vorhanden</span></td><td>Größen und Namen</td></tr><tr><td>Tabelle-zu-Archivierungsobjekt</td><td>entplexit Knowledge Base</td><td><span class="badge-yes">aus Erfahrung</span></td><td>Mapping plus Pattern-Erkennung</td></tr><tr><td>Bestehender Archivierungsstand</td><td>EWA DVM-Sektion</td><td><span class="badge-no">offen</span></td><td>EWA-DVM-Sektion meist generisch, manuell prüfen</td></tr><tr><td>Aufbewahrungsfristen</td><td>Workshop mit Fachbereich</td><td><span class="badge-no">offen</span></td><td>Nicht im EWA enthalten</td></tr><tr><td>TCO-Sätze in Euro</td><td>entplexit Default-Sätze</td><td><span class="badge-yes">interaktiv</span></td><td>Im TCO-Rechner anpassbar</td></tr></tbody>
       </table>
     </div>
   </section>
@@ -748,10 +654,11 @@
 
 <div class="print-button-wrap">
   <button class="print-btn" type="button" onclick="window.print()">Als PDF speichern</button>
-  <div class="print-hint">Im Druckdialog "Als PDF speichern" ausw�hlen, um eine PDF-Version des Reports lokal zu sichern.</div>
+  <div class="print-hint">Im Druckdialog "Als PDF speichern" auswählen, um eine PDF-Version des Reports lokal zu sichern.</div>
 </div>
+
 <footer class="foot">
-  <div>© entplexit GmbH · SAP Partner · Live-Demo · makeeimsimple.net</div>
+  <div>© entplexit GmbH · SAP Partner · Demo · makeeimsimple.net</div>
   <div class="slogan-foot">make <span class="accent-word">Archiv</span> <span class="light">simple</span></div>
 </footer>
 
@@ -761,21 +668,10 @@
   //   4 TB:  55.000 EUR/Monat / 4.096 GB * 12 = 161,13 EUR/GB/Jahr
   //   6 TB:  90.000 EUR/Monat / 6.144 GB * 12 = 175,78 EUR/GB/Jahr
   //   8 TB: 113.000 EUR/Monat / 8.192 GB * 12 = 165,53 EUR/GB/Jahr
-  const PROFILES = {
-    prod4:  { hana: 161, label: 'Prod 4 TB' },
-    prod6:  { hana: 176, label: 'Prod 6 TB' },
-    prod8:  { hana: 166, label: 'Prod 8 TB' }
-  };
+  const PROFILES = { prod4: { hana: 161, label: "Prod ≈ 4 TB" }, prod6: { hana: 176, label: "Prod ≈ 6 TB" }, prod8: { hana: 166, label: "Prod ≈ 8 TB" } };
   // ===== Stufen-Tabelle (fuer den Bonus-Check) =====
-  const STAGES = [
-    { max_gb:  4096, eur_month:  55000, label: '\u2264 4 TB',  estimated: false },
-    { max_gb:  6144, eur_month:  90000, label: '\u2264 6 TB',  estimated: false },
-    { max_gb:  8192, eur_month: 113000, label: '\u2264 8 TB',  estimated: false },
-    { max_gb: 10240, eur_month: 135000, label: '\u2264 10 TB', estimated: true  },
-    { max_gb: 12288, eur_month: 155000, label: '\u2264 12 TB', estimated: true  },
-    { max_gb: 16384, eur_month: 200000, label: '\u2264 16 TB', estimated: true  }
-  ];
-  const PHASE_GB = { phase1: 145, phase2: 11, phase3: 292 };
+  const STAGES = [ { max_gb: 4096, eur_month: 55000, label: "≤ 4 TB", estimated: false }, { max_gb: 6144, eur_month: 90000, label: "≤ 6 TB", estimated: false }, { max_gb: 8192, eur_month: 113000, label: "≤ 8 TB", estimated: false }, { max_gb: 10240, eur_month: 135000, label: "≤ 10 TB", estimated: true }, { max_gb: 12288, eur_month: 155000, label: "≤ 12 TB", estimated: true }, { max_gb: 16384, eur_month: 200000, label: "≤ 16 TB", estimated: true } ];
+  const PHASE_GB = { phase1: 138.3, phase2: 11.4, phase3: 292.2 };
   const $ = (id) => document.getElementById(id);
   const slHana = $('sld-hana'), vHana = $('val-hana');
   const slDisc = $('sld-discount'), vDisc = $('val-discount');
